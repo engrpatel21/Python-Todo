@@ -12,37 +12,26 @@
 <body>
 
     <div class="container text-center mt-5 mb-5">
-        <h1 class='text-center'>Wish List Item</h1>
+        <h1 class='text-center'>Add Wish List Item</h1>
     </div>
     <main>
-       <div class="container d-flex justify-content-center">
-        <div class="row">
-        {% if wishs %}
-        <table class="table">
-            <thead>
-                <th scope='col'>Wish</th>
-                <th scope='col'>Delete</th>
-            </thead>
-            <tbody>
-                {% for wish in wishs %}
-                <tr>
-                    <td> {{wish.name}} </td>
-                    <td><a href="{% url 'delete_wish' wish.id %} " class='btn btn-danger btn-sm' >X</a></td>
-                </tr>
-                {% endfor %}
-            
-            </tbody>
-        </table>
-        {% else %}
-        <h2>No Wishes Yet!</h2>
-        {% endif %}
-        </div>
-    </div>
-    <div class="container mt-3">
+    <div class="container">
         <div class="row d-flex justify-content-center">
-            <a href="{% url 'add_wish'%}" class="btn btn-primary btn-sm">Add Wish</a>
+            <form action="" method="POST">
+            <!-- Django requires the following for security purposes -->
+            {% csrf_token %}
+            <table>
+            <!-- Render the inputs inside of <tr>s & <td>s -->
+            {{ form.as_table }}
+            </table>
+            <div class="container d-flex justify-content-center">
+                <input type="submit" value="Submit!" class="btn btn-primary btn-sm">
+            </div>
+            
         </div>
     </div>
+  
+    </form>
     </main>
         
 
